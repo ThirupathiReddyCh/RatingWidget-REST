@@ -15,24 +15,26 @@ public class RatingService {
 	public Response getMsg(@PathParam("rating") String rating,@PathParam("callSupportRating") String callSupportRating,
 			@PathParam("recommendRating") String recommendRating,
 			@PathParam("feedback") String feedback) {
-		String output = "Rating is : " + rating;
-		saveRatingDetails(rating,callSupportRating,recommendRating);
+		String output = "Rating submitted succesfully";
+		saveRatingDetails(rating,callSupportRating,recommendRating,feedback);
 		return Response.status(200).entity(output).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET").build();
 	}
 	
 	public int saveRatingDetails(String rating,
-			String ratingSuggestion, String feedback) {
+			String callSupportRating, String recommendRating,String feedback) {
 		Connection connection = null;
 		Statement stmt = null;
 		int rowsAffected = 0;
 			try {
 				connection = DBUtils.getDBConnection();
 				stmt = connection.createStatement();
-				String query = "INSERT INTO  \"RatingInfo\" (\"rating\",\"ratingSuggestion\",\"feedback\") "
+				String query = "INSERT INTO  \"RatingInfo\" (\"rating\",\"callSupportRating\",\"recommendRating\",\"feedback\") "
 						+ "VALUES ('"
 						+ rating
 						+ "','"
-						+ ratingSuggestion
+						+ callSupportRating
+						+ "','"
+						+ recommendRating
 						+ "','"
 						+ feedback + "')";
 				if (stmt != null) {
