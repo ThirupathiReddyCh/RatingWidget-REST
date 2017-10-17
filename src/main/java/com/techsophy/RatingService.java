@@ -1,4 +1,4 @@
-package com.mkyong.rest;
+package com.techsophy;
  
 import java.sql.Connection;
 import java.sql.Statement;
@@ -43,21 +43,9 @@ public class RatingService {
 			} catch (Exception e) {
 				System.out.println("In saveRatingDetails method catch block due to "+ e);
 			} finally {
+				DBUtils.closeStatement(stmt);
+				DBUtils.closeConnection(connection);					
 			}
 		return rowsAffected;
-	}
-/*	@CrossOrigin(origins = "http://localhost:3000")
-	@RequestMapping(value = "/saveUserRating", method = RequestMethod.GET)
-	public @ResponseBody
-	String saveUserRating(@RequestParam String rating,@RequestParam String ratingSuggestion,
-			@RequestParam String feedback) {	
-		ModelAndView model = new ModelAndView();
-		String json = null;
-		System.out.println("User Rating is: "+rating +" :"+ratingSuggestion+" :"+feedback);
-		saveRatingDetails(rating,ratingSuggestion,feedback);
-		model.addObject("message", "Rating submitted successfully");
-		json = new Gson().toJson(model);
-		return json;
-	}*/
-	
+	}	
 }
