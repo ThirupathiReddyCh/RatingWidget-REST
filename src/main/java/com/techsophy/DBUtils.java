@@ -1,4 +1,4 @@
-package com.mkyong.rest;
+package com.techsophy;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,7 +26,8 @@ public class DBUtils {
 
 	public static void closeResultSet(ResultSet rs) {
 		try {
-			rs.close();
+			if(rs!=null){
+			rs.close();}
 		} catch (Exception ex) {
 			System.out.println("In closeResultSet " + ex);
 		}
@@ -34,7 +35,8 @@ public class DBUtils {
 
 	public static void closeStatement(Statement st) {
 		try {
-			st.close();
+			if(st!=null){
+				st.close();}		
 		} catch (Exception ex) {
 			System.out.println("In closeStatement " + ex);
 		}
@@ -42,7 +44,8 @@ public class DBUtils {
 
 	public static void closeConnection(Connection con) {
 		try {
-			con.close();
+			if(con!=null){
+			con.close();}
 		} catch (Exception ex) {
 			System.out.println("In closeConnection " + ex);
 		}
